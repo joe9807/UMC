@@ -19,13 +19,16 @@ import java.util.List;
         })
 public class VenuePgEntity {
     @Id
+    @Column(name = "brand")
     private String brand;
 
     @Id
-    private String provider;
+    @Column(name = "external_id")
+    private String externalId;
 
     @Id
-    private String externalId;
+    @Column(name = "provider")
+    private String provider;
 
     private String referenceId;
 

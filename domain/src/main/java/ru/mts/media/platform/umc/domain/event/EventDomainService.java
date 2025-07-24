@@ -3,13 +3,15 @@ package ru.mts.media.platform.umc.domain.event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-import ru.mts.media.platform.umc.domain.gql.types.*;
+import ru.mts.media.platform.umc.domain.gql.types.Event;
+import ru.mts.media.platform.umc.domain.gql.types.FullExternalId;
+import ru.mts.media.platform.umc.domain.gql.types.SaveVenueInput;
+import ru.mts.media.platform.umc.domain.gql.types.Venue;
 import ru.mts.media.platform.umc.domain.venue.VenueDomainServiceMapper;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +24,7 @@ public class EventDomainService {
                             String name,
                             String startTime,
                             String endTime){
-        Venue newVenue = Venue.newBuilder().externalId(FullExternalId.newBuilder().externalId("adfc").brandId("456t").providerId("245r").build())
+        Venue newVenue = Venue.newBuilder().name("xvdfv").id(UUID.randomUUID().toString()).externalId(FullExternalId.newBuilder().externalId("adfc").brandId("456t").providerId("245r").build())
                 .build();
         Event newEvent = Event.newBuilder()
                 .id(id)
@@ -32,12 +34,8 @@ public class EventDomainService {
                 .endTime(endTime)
                 .build();
 
-        EventSave evt = Optional.of(newEvent)
-                .map(EventSave::new)
-                .orElse(null);
-
+        EventSave evt = Optional.of(newEvent).map(EventSave::new).orElse(null);
         eventPublisher.publishEvent(evt);
-
         return evt;
     }
 
