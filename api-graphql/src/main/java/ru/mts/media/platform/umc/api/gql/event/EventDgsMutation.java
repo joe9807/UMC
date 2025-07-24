@@ -6,7 +6,7 @@ import com.netflix.graphql.dgs.InputArgument;
 import lombok.RequiredArgsConstructor;
 import ru.mts.media.platform.umc.domain.event.EventDomainService;
 import ru.mts.media.platform.umc.domain.gql.types.Event;
-import ru.mts.media.platform.umc.domain.gql.types.SaveVenueInput;
+import ru.mts.media.platform.umc.domain.gql.types.RefVenueInput;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class EventDgsMutation {
 
     @DgsMutation
     public Event createEvent(@InputArgument String id,
-                             @InputArgument List<SaveVenueInput> venues,
+                             @InputArgument List<RefVenueInput> venues,
                              @InputArgument String name,
                              @InputArgument String startTime,
                              @InputArgument String endTime) {
