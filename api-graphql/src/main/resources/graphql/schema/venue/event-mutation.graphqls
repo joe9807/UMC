@@ -1,0 +1,9 @@
+extend type Mutation {
+    createEvent(
+        id: String!
+        venues: [SaveVenueInput]
+        name: String!
+        startTime: String!
+        endTime: String!
+    ): Event
+}

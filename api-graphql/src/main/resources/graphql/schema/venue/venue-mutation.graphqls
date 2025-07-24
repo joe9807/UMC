@@ -3,4 +3,10 @@ extend type Mutation {
         id: FullExternalIdInput!
         input: SaveVenueInput!,
     ): Venue
+
+    createVenue(
+        id: FullExternalIdInput!
+        input: SaveVenueInput!,
+    ): Venue
+
 }

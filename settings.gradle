@@ -1,4 +1,4 @@
-rootProject.name = 'umc'
+rootProject.name = 'UMC'
 
 include 'application'
 include 'domain'
