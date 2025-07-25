@@ -14,6 +14,12 @@ public interface VenuePgMapper {
     @Mapping(target = "externalId.providerId", source = "provider")
     @Mapping(target = "externalId.externalId", source = "externalId")
     @Mapping(target = "id", source = "referenceId")
+    Venue asModel(VenueView venueView);
+
+    @Mapping(target = "externalId.brandId", source = "brand")
+    @Mapping(target = "externalId.providerId", source = "provider")
+    @Mapping(target = "externalId.externalId", source = "externalId")
+    @Mapping(target = "id", source = "referenceId")
     Venue asModel(VenuePgEntity venuePg);
 
     @Mapping(target = "referenceId", source = "id")
