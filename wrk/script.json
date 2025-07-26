@@ -1,0 +1,9 @@
+{
+    "query": "mutation createEvent($venues: [RefVenueInput], $name: String!, $startTime: String!, $endTime: String!) { createEvent(venues: $venues, name: $name, startTime: $startTime, endTime: $endTime) { id, venues{name}, name, startTime, endTime}}",
+    "variables": {
+        "venues":[],
+        "name": "event joe",
+        "startTime": "24-07-2025 12:12:12",
+        "endTime": "24-07-2025 13:13:13"
+    }
+}

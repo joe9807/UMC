@@ -1,0 +1,1 @@
+docker run --rm -it -v D:/DIFFERENT/programs/wrk/umc/script.lua:/tmp/script.lua -v D:/DIFFERENT/programs/wrk/umc/script.json:/tmp/script.json williamyeh/wrk -t50 -c50 -d100s -s /tmp/script.lua http://192.168.0.49:20101/graphql
