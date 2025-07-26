@@ -42,8 +42,8 @@ public class EventDgsTest {
 
     @Test
     public void createEvent(){
-        Event event1 = eventDgsMutation.createEvent("123", null, "name123", "24-07-2025 12:14:15", "24-07-2025 12:12:12");
-        Event event2 = eventDgsMutation.createEvent("456", null, "name456", "24-07-2025 12:14:15", "21-07-2025 12:12:12");
+        Event event1 = eventDgsMutation.createEvent(null, "name123", "24-07-2025 12:14:15", "24-07-2025 12:12:12");
+        Event event2 = eventDgsMutation.createEvent(null, "name456", "24-07-2025 12:14:15", "21-07-2025 12:12:12");
 
         List<Event> events = eventDgsQuery.findAll();
         assertThat(events).isNotNull();
