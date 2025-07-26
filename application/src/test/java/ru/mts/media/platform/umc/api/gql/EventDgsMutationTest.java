@@ -49,10 +49,7 @@ public class EventDgsMutationTest {
         assertThat(events).isNotNull();
         assertThat(events.size()).isEqualTo(2);
 
-        Event event1Result = events.get(0);
-        Event event2Result = events.get(1);
-
-        assertThat(event1Result).isEqualTo(event1);
-        assertThat(event2Result).isEqualTo(event2);
+        assertThat(events.get(0)).isEqualTo(event1);
+        assertThat(events.get(1)).isEqualTo(event2);
     }
 }
