@@ -32,7 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
                 EventDgsQuery.class,
                 EventPgEntity.class,
                 VenuePgEntity.class})
-public class EventDgsMutationTest {
+public class EventDgsTest {
 
     @Autowired
     private EventDgsMutation eventDgsMutation;

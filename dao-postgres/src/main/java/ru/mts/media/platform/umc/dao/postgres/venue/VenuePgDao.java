@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
+public
 class VenuePgDao implements VenueSot {
     private final VenuePgRepository repository;
     private final VenuePgMapper mapper;

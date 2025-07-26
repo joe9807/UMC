@@ -6,7 +6,7 @@ extend type Mutation {
 
     createVenue(
         id: FullExternalIdInput!
-        input: SaveVenueInput!,
+        input: SaveVenueInput!
     ): Venue
 
 }
