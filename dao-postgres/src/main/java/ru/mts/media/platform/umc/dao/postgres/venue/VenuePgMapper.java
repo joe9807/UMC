@@ -3,6 +3,8 @@ package ru.mts.media.platform.umc.dao.postgres.venue;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.mts.media.platform.umc.dao.postgres.common.FullExternalIdPk;
+import ru.mts.media.platform.umc.dao.postgres.view.VenueView;
+import ru.mts.media.platform.umc.dao.postgres.view.VenueViewNoEvents;
 import ru.mts.media.platform.umc.domain.gql.types.FullExternalId;
 import ru.mts.media.platform.umc.domain.gql.types.Venue;
 
@@ -15,6 +17,12 @@ public interface VenuePgMapper {
     @Mapping(target = "externalId.externalId", source = "externalId")
     @Mapping(target = "id", source = "referenceId")
     Venue asModel(VenueView venueView);
+
+    @Mapping(target = "externalId.brandId", source = "brand")
+    @Mapping(target = "externalId.providerId", source = "provider")
+    @Mapping(target = "externalId.externalId", source = "externalId")
+    @Mapping(target = "id", source = "referenceId")
+    Venue asModel(VenueViewNoEvents venueView);
 
     @Mapping(target = "externalId.brandId", source = "brand")
     @Mapping(target = "externalId.providerId", source = "provider")

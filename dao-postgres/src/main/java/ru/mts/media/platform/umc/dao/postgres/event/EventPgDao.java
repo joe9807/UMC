@@ -24,6 +24,6 @@ class EventPgDao implements EventSot {
     }
 
     public List<Event> findAll(){
-        return repository.findAllEvents().stream().map(mapper::asModelNoEvents).collect(Collectors.toList());
+        return repository.findAllEvents().stream().map(mapper::asModel).collect(Collectors.toList());
     }
 }

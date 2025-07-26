@@ -1,6 +1,6 @@
-package ru.mts.media.platform.umc.dao.postgres.venue;
+package ru.mts.media.platform.umc.dao.postgres.view;
 
-public interface VenueView {
+public interface VenueViewNoEvents {
     String getBrand();
     String getExternalId();
     String getProvider();
