@@ -11,14 +11,14 @@ import ru.mts.media.platform.umc.domain.gql.types.Venue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class EventDomainService {
     private final ApplicationEventPublisher eventPublisher;
 
-    public EventSave create(String id,
-                            List<RefVenueInput> venues,
+    public EventSave create(List<RefVenueInput> venues,
                             String name,
                             String startTime,
                             String endTime){
@@ -27,7 +27,7 @@ public class EventDomainService {
                         .brandId(ref.getExternalId().getBrandId()).providerId(ref.getExternalId().getProviderId()).build())
                 .build()).toList();
         Event newEvent = Event.newBuilder()
-                .id(id)
+                .id(UUID.randomUUID().toString())
                 .venues(listVenues)
                 .name(name)
                 .startTime(startTime)

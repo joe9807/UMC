@@ -16,11 +16,10 @@ public class EventDgsMutation {
     private final EventDomainService domainService;
 
     @DgsMutation
-    public Event createEvent(@InputArgument String id,
-                             @InputArgument List<RefVenueInput> venues,
+    public Event createEvent(@InputArgument List<RefVenueInput> venues,
                              @InputArgument String name,
                              @InputArgument String startTime,
                              @InputArgument String endTime) {
-        return domainService.create(id, venues, name, startTime, endTime).getEntity();
+        return domainService.create(venues, name, startTime, endTime).getEntity();
     }
 }
