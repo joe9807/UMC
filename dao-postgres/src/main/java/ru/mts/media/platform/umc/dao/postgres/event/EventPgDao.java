@@ -12,15 +12,14 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
+public
 class EventPgDao implements EventSot {
     private final EventPgRepository repository;
     private final EventPgMapper mapper;
 
     @EventListener
     public void handleVenueCreatedEvent(EventSave evt) {
-        evt.unwrap()
-                .map(mapper::asEntity)
-                .ifPresent(repository::save);
+        evt.unwrap().map(mapper::asEntity).ifPresent(repository::save);
     }
 
     public List<Event> findAll(){

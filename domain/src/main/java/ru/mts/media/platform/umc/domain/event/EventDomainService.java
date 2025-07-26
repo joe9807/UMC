@@ -3,9 +3,12 @@ package ru.mts.media.platform.umc.domain.event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-import ru.mts.media.platform.umc.domain.gql.types.*;
-import ru.mts.media.platform.umc.domain.venue.VenueDomainServiceMapper;
+import ru.mts.media.platform.umc.domain.gql.types.Event;
+import ru.mts.media.platform.umc.domain.gql.types.FullExternalId;
+import ru.mts.media.platform.umc.domain.gql.types.RefVenueInput;
+import ru.mts.media.platform.umc.domain.gql.types.Venue;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +16,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EventDomainService {
     private final ApplicationEventPublisher eventPublisher;
-    private final VenueDomainServiceMapper mapper;
 
     public EventSave create(String id,
                             List<RefVenueInput> venues,
@@ -21,7 +23,7 @@ public class EventDomainService {
                             String startTime,
                             String endTime){
 
-        List<Venue> listVenues = venues.stream().map(ref-> Venue.newBuilder().externalId(FullExternalId.newBuilder().externalId(ref.getExternalId().getExternalId())
+        List<Venue> listVenues = Optional.ofNullable(venues).orElse(new ArrayList<>()).stream().map(ref-> Venue.newBuilder().externalId(FullExternalId.newBuilder().externalId(ref.getExternalId().getExternalId())
                         .brandId(ref.getExternalId().getBrandId()).providerId(ref.getExternalId().getProviderId()).build())
                 .build()).toList();
         Event newEvent = Event.newBuilder()
