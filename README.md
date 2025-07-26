@@ -116,3 +116,17 @@ curl --location 'http://localhost:20101/graphql' \
 "endTime": "24-07-2025 13:13:13"
 }
 }'
+
+findAllEvents:
+curl --location 'http://localhost:20101/graphql' \
+--header 'Content-Type: application/json' \
+--data '{
+"query": "{findAll{id, venues{name, externalId{brandId, externalId, providerId}}, name, startTime, endTime}}"
+}'
+
+findAllVenues:
+curl --location 'http://localhost:20101/graphql' \
+--header 'Content-Type: application/json' \
+--data '{
+"query": "{findAllVenues{id, events{name, startTime, endTime}, name, externalId{brandId, externalId, providerId}}}"
+}'
