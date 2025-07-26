@@ -42,11 +42,17 @@ public class EventDgsMutationTest {
 
     @Test
     public void createEvent(){
-        eventDgsMutation.createEvent("123", null, "name123", "24-07-2025 12:14:15", "24-07-2025 12:12:12");
-        eventDgsMutation.createEvent("456", null, "name456", "24-07-2025 12:14:15", "21-07-2025 12:12:12");
+        Event event1 = eventDgsMutation.createEvent("123", null, "name123", "24-07-2025 12:14:15", "24-07-2025 12:12:12");
+        Event event2 = eventDgsMutation.createEvent("456", null, "name456", "24-07-2025 12:14:15", "21-07-2025 12:12:12");
 
         List<Event> events = eventDgsQuery.findAll();
         assertThat(events).isNotNull();
         assertThat(events.size()).isEqualTo(2);
+
+        Event event1Result = events.get(0);
+        Event event2Result = events.get(1);
+
+        assertThat(event1Result).isEqualTo(event1);
+        assertThat(event2Result).isEqualTo(event2);
     }
 }

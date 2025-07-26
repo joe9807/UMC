@@ -13,6 +13,6 @@ interface VenuePgRepository extends JpaRepository<VenuePgEntity, FullExternalIdP
 
     VenuePgEntity findByReferenceId(String referenceId);
 
-    @Query("SELECT v FROM VenuePgEntity v JOIN FETCH v.events")
+    @Query("SELECT v FROM VenuePgEntity v LEFT JOIN FETCH v.events")
     List<VenueView> findAllVenues();
 }
