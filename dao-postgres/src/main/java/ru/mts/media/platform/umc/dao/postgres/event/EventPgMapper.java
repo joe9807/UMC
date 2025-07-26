@@ -10,6 +10,5 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 @Mapper(componentModel = SPRING, uses = VenuePgMapper.class)
 public interface EventPgMapper {
     Event asModel(EventView eventView);
-    Event asModel(EventPgEntity eventPgEntity);
     EventPgEntity asEntity(Event event);
 }
