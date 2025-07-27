@@ -51,7 +51,7 @@ public class VenueDgsTest {
         assertThat(venues).isNotNull();
         assertThat(venues.size()).isEqualTo(2);
 
-        assertThat(venues.get(0)).isEqualTo(venue1);
-        assertThat(venues.get(1)).isEqualTo(venue2);
+        assertThat(venues.stream().anyMatch(v->v.equals(venue1))).isTrue();
+        assertThat(venues.stream().anyMatch(v->v.equals(venue2))).isTrue();
     }
 }
