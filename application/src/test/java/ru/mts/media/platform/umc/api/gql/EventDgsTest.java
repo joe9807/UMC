@@ -23,11 +23,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(properties = {
-        "dgs.graphql.schema-locations=classpath*:graphql/schema/**/*.graphqls",
-        "spring.flyway.enabled=true",
-        "spring.flyway.locations=classpath:db/migration",
-        "spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL",
-        "spring.jpa.hibernate.ddl-auto=none"
+        "dgs.graphql.schema-locations=classpath*:graphql/schema/**/*.graphqls"
         },
         classes = {Application.class,
                 EventDgsMutation.class,
@@ -49,11 +45,11 @@ public class EventDgsTest {
 
     @Test
     public void createEvent(){
-        Event event1 = eventDgsMutation.createEvent(null, "name123", LocalDateTime.now().minusDays(10).atOffset(ZoneOffset.UTC).truncatedTo(ChronoUnit.SECONDS)
-                , LocalDateTime.now().atOffset(ZoneOffset.UTC).truncatedTo(ChronoUnit.SECONDS));
+        Event event1 = eventDgsMutation.createEvent(null, "name123", LocalDateTime.now().minusDays(10).atOffset(ZoneOffset.ofHours(3)).truncatedTo(ChronoUnit.SECONDS)
+                , LocalDateTime.now().atOffset(ZoneOffset.ofHours(3)).truncatedTo(ChronoUnit.SECONDS));
 
-        Event event2 = eventDgsMutation.createEvent(null, "name456", LocalDateTime.now().minusDays(10).atOffset(ZoneOffset.UTC).truncatedTo(ChronoUnit.SECONDS)
-                , LocalDateTime.now().minusDays(1).atOffset(ZoneOffset.UTC).truncatedTo(ChronoUnit.SECONDS));
+        Event event2 = eventDgsMutation.createEvent(null, "name456", LocalDateTime.now().minusDays(10).atOffset(ZoneOffset.ofHours(3)).truncatedTo(ChronoUnit.SECONDS)
+                , LocalDateTime.now().minusDays(1).atOffset(ZoneOffset.ofHours(3)).truncatedTo(ChronoUnit.SECONDS));
 
         List<Event> events = eventDgsQuery.findAll();
         assertThat(events).isNotNull();
