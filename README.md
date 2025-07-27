@@ -87,7 +87,7 @@ curl --location 'http://localhost:20101/graphql' \
 "query": "mutation createVenue($id: FullExternalIdInput!, $input: SaveVenueInput!) { createVenue(id: $id, input: $input) { id externalId{providerId,  brandId, externalId}, name } }",
 "variables": {
 "id": {
-"providerId": "245r",
+"providerId": "222",
 "brandId": "456t",
 "externalId": "adfc"
 },
@@ -98,15 +98,23 @@ curl --location 'http://localhost:20101/graphql' \
 }'
 
 CreateEvent:
-{
+curl --location 'http://localhost:20101/graphql' \
+--header 'Content-Type: application/json' \
+--data '{
 "query": "mutation createEvent($venues: [RefVenueInput], $name: String!, $startTime: DateTime!, $endTime: DateTime!) { createEvent(venues: $venues, name: $name, startTime: $startTime, endTime: $endTime) { id, venues{name}, name, startTime, endTime}}",
 "variables": {
-"venues":[],
+"venues":[{
+"externalId":{
+"providerId": "222",
+"brandId": "456t",
+"externalId": "adfc"
+}
+}],
 "name": "event joe",
 "startTime": "2025-07-27T19:52:44.911+00:00",
 "endTime": "2025-07-27T19:52:44.911+00:00"
 }
-}
+}'
 
 findAllEvents:
 curl --location 'http://localhost:20101/graphql' \
