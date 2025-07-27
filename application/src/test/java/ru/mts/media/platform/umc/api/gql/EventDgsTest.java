@@ -15,13 +15,19 @@ import ru.mts.media.platform.umc.domain.event.EventDomainService;
 import ru.mts.media.platform.umc.domain.gql.types.Event;
 import ru.mts.media.platform.umc.domain.venue.VenueDomainServiceMapper;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(properties = {
-        "dgs.graphql.schema-locations=classpath*:graphql/schema/**/*.graphqls"
+        "dgs.graphql.schema-locations=classpath*:graphql/schema/**/*.graphqls",
+        "spring.flyway.enabled=true",
+        "spring.flyway.locations=classpath:db/migration",
+        "spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL",
+        "spring.jpa.hibernate.ddl-auto=none"
         },
         classes = {Application.class,
                 EventDgsMutation.class,
@@ -43,14 +49,17 @@ public class EventDgsTest {
 
     @Test
     public void createEvent(){
-        Event event1 = eventDgsMutation.createEvent(null, "name123", OffsetDateTime.now().minusDays(10), OffsetDateTime.now());
-        Event event2 = eventDgsMutation.createEvent(null, "name456", OffsetDateTime.now().minusDays(2), OffsetDateTime.now().minusDays(1));
+        Event event1 = eventDgsMutation.createEvent(null, "name123", LocalDateTime.now().minusDays(10).atOffset(ZoneOffset.UTC).truncatedTo(ChronoUnit.SECONDS)
+                , LocalDateTime.now().atOffset(ZoneOffset.UTC).truncatedTo(ChronoUnit.SECONDS));
+
+        Event event2 = eventDgsMutation.createEvent(null, "name456", LocalDateTime.now().minusDays(10).atOffset(ZoneOffset.UTC).truncatedTo(ChronoUnit.SECONDS)
+                , LocalDateTime.now().minusDays(1).atOffset(ZoneOffset.UTC).truncatedTo(ChronoUnit.SECONDS));
 
         List<Event> events = eventDgsQuery.findAll();
         assertThat(events).isNotNull();
         assertThat(events.size()).isEqualTo(2);
 
-        assertThat(events.get(0)).isEqualTo(event1);
-        assertThat(events.get(1)).isEqualTo(event2);
+        assertThat(events.stream().anyMatch(v->v.equals(event1))).isTrue();
+        assertThat(events.stream().anyMatch(v->v.equals(event2))).isTrue();
     }
 }

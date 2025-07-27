@@ -2,7 +2,7 @@ extend type Mutation {
     createEvent(
         venues: [RefVenueInput]
         name: String!
-        startTime: String!
-        endTime: String!
+        startTime: DateTime!
+        endTime: DateTime!
     ): Event
 }

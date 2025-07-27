@@ -1,5 +1,4 @@
-# scalar UmcCanonicalId
-# scalar UmcReferenceId
+scalar DateTime
 
 type Query {
 }

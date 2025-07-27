@@ -8,6 +8,7 @@ import ru.mts.media.platform.umc.domain.gql.types.FullExternalId;
 import ru.mts.media.platform.umc.domain.gql.types.RefVenueInput;
 import ru.mts.media.platform.umc.domain.gql.types.Venue;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +21,8 @@ public class EventDomainService {
 
     public EventSave create(List<RefVenueInput> venues,
                             String name,
-                            String startTime,
-                            String endTime){
+                            OffsetDateTime startTime,
+                            OffsetDateTime endTime){
 
         List<Venue> listVenues = Optional.ofNullable(venues).orElse(new ArrayList<>()).stream().map(ref-> Venue.newBuilder().externalId(FullExternalId.newBuilder().externalId(ref.getExternalId().getExternalId())
                         .brandId(ref.getExternalId().getBrandId()).providerId(ref.getExternalId().getProviderId()).build())

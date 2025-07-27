@@ -2,14 +2,14 @@ type Event {
     id: ID!
     venues: [Venue]
     name: String!
-    startTime: String!
-    endTime: String!
+    startTime: DateTime!
+    endTime: DateTime!
 }
 
 input SaveEventInput {
     id: ID!
     venues: [SaveVenueInput]
     name: String!
-    startTime: String!
-    endTime: String!
+    startTime: DateTime!
+    endTime: DateTime!
 }

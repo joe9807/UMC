@@ -24,8 +24,8 @@
 ⦁ `id` — уникальный идентификатор события  
 ⦁ `venue` — связь события с уже существующей сущностью `Venue` (Many-to-Many).  
 ⦁ `name` — название события (`String`, NOT NULL)  
-⦁ `startTime` — дата и время начала события (`LocalDateTime`, NOT NULL)  
-⦁ `endTime` — дата и время окончания события (`LocalDateTime`, NOT NULL)
+⦁ `startTime` — дата и время начала события (`OffsetDateTime`, NOT NULL)  
+⦁ `endTime` — дата и время окончания события (`OffsetDateTime`, NOT NULL)
 
 **Добавьте в GraphQL-схему:**  
 ⦁ Возможность запросить список событий с информацией о площадке (`Venue`).  
@@ -101,16 +101,9 @@ CreateEvent:
 curl --location 'http://localhost:20101/graphql' \
 --header 'Content-Type: application/json' \
 --data '{
-"query": "mutation createEvent($id: String!, $venues: [RefVenueInput], $name: String!, $startTime: String!, $endTime: String!) { createEvent(id: $id, venues: $venues, name: $name, startTime: $startTime, endTime: $endTime) { id, venues{name}, name, startTime, endTime}}",
+"query": "mutation createEvent($venues: [RefVenueInput], $name: String!, $startTime: String!, $endTime: String!) { createEvent(venues: $venues, name: $name, startTime: $startTime, endTime: $endTime) { id, venues{name}, name, startTime, endTime}}",
 "variables": {
-"id": "65787689",
-"venues":[{
-"externalId":{
-"providerId": "245r",
-"brandId": "456t",
-"externalId": "adfc"
-}
-}],
+"venues":[],
 "name": "event joe",
 "startTime": "24-07-2025 12:12:12",
 "endTime": "24-07-2025 13:13:13"

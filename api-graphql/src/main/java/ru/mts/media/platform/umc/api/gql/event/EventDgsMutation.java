@@ -8,6 +8,7 @@ import ru.mts.media.platform.umc.domain.event.EventDomainService;
 import ru.mts.media.platform.umc.domain.gql.types.Event;
 import ru.mts.media.platform.umc.domain.gql.types.RefVenueInput;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @DgsComponent
@@ -18,8 +19,8 @@ public class EventDgsMutation {
     @DgsMutation
     public Event createEvent(@InputArgument List<RefVenueInput> venues,
                              @InputArgument String name,
-                             @InputArgument String startTime,
-                             @InputArgument String endTime) {
+                             @InputArgument OffsetDateTime startTime,
+                             @InputArgument OffsetDateTime endTime) {
         return domainService.create(venues, name, startTime, endTime).getEntity();
     }
 }
