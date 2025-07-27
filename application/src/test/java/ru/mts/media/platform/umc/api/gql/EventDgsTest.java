@@ -15,6 +15,7 @@ import ru.mts.media.platform.umc.domain.event.EventDomainService;
 import ru.mts.media.platform.umc.domain.gql.types.Event;
 import ru.mts.media.platform.umc.domain.venue.VenueDomainServiceMapper;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,8 +43,8 @@ public class EventDgsTest {
 
     @Test
     public void createEvent(){
-        Event event1 = eventDgsMutation.createEvent(null, "name123", "24-07-2025 12:14:15", "24-07-2025 12:12:12");
-        Event event2 = eventDgsMutation.createEvent(null, "name456", "24-07-2025 12:14:15", "21-07-2025 12:12:12");
+        Event event1 = eventDgsMutation.createEvent(null, "name123", OffsetDateTime.now().minusDays(10), OffsetDateTime.now());
+        Event event2 = eventDgsMutation.createEvent(null, "name456", OffsetDateTime.now().minusDays(2), OffsetDateTime.now().minusDays(1));
 
         List<Event> events = eventDgsQuery.findAll();
         assertThat(events).isNotNull();
