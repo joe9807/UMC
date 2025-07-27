@@ -9,8 +9,7 @@ import ru.mts.media.platform.umc.dao.postgres.view.VenueView;
 import java.util.List;
 
 @Repository
-public
-interface VenuePgRepository extends JpaRepository<VenuePgEntity, FullExternalIdPk> {
+public interface VenuePgRepository extends JpaRepository<VenuePgEntity, FullExternalIdPk> {
 
     VenuePgEntity findByReferenceId(String referenceId);
 

@@ -98,17 +98,15 @@ curl --location 'http://localhost:20101/graphql' \
 }'
 
 CreateEvent:
-curl --location 'http://localhost:20101/graphql' \
---header 'Content-Type: application/json' \
---data '{
-"query": "mutation createEvent($venues: [RefVenueInput], $name: String!, $startTime: String!, $endTime: String!) { createEvent(venues: $venues, name: $name, startTime: $startTime, endTime: $endTime) { id, venues{name}, name, startTime, endTime}}",
+{
+"query": "mutation createEvent($venues: [RefVenueInput], $name: String!, $startTime: DateTime!, $endTime: DateTime!) { createEvent(venues: $venues, name: $name, startTime: $startTime, endTime: $endTime) { id, venues{name}, name, startTime, endTime}}",
 "variables": {
 "venues":[],
 "name": "event joe",
-"startTime": "24-07-2025 12:12:12",
-"endTime": "24-07-2025 13:13:13"
+"startTime": "2025-07-27T19:52:44.911+00:00",
+"endTime": "2025-07-27T19:52:44.911+00:00"
 }
-}'
+}
 
 findAllEvents:
 curl --location 'http://localhost:20101/graphql' \
