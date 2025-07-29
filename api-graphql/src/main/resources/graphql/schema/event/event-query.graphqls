@@ -1,3 +1,4 @@
 extend type Query {
     findAll: [Event]
+    findById(id: ID!): Event
 }

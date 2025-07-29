@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface EventSot {
     List<Event> findAll();
+    Event findById(String id);
 }

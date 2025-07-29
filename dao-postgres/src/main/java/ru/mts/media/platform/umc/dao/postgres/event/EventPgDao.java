@@ -12,8 +12,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public
-class EventPgDao implements EventSot {
+public class EventPgDao implements EventSot {
     private final EventPgRepository repository;
     private final EventPgMapper mapper;
 
@@ -24,5 +23,10 @@ class EventPgDao implements EventSot {
 
     public List<Event> findAll(){
         return repository.findAllEvents().stream().map(mapper::asModel).collect(Collectors.toList());
+    }
+
+    @Override
+    public Event findById(String id) {
+        return repository.findEventById(id).map(mapper::asModel).orElse(null);
     }
 }

@@ -17,4 +17,9 @@ public class EventDgsQuery {
     public List<Event> findAll(){
         return eventSot.findAll();
     }
+
+    @DgsQuery
+    public Event findById(String id){
+        return eventSot.findById(id);
+    }
 }
