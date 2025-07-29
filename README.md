@@ -129,3 +129,13 @@ curl --location 'http://localhost:20101/graphql' \
 --data '{
 "query": "{findAllVenues{id, events{name, startTime, endTime}, name, externalId{brandId, externalId, providerId}}}"
 }'
+
+findEventById
+curl --location 'http://localhost:20101/graphql' \
+--header 'Content-Type: application/json' \
+--data '{
+"query": "query findById($id: ID!) {findById(id: $id) {id,name,startTime,endTime,venues{name, externalId{brandId, externalId, providerId}}}}",
+"variables": {
+"id": "f7960330-b950-4283-81ac-86f6e8462364"
+}
+}'
